@@ -1,0 +1,39 @@
+{
+  "name": "Baserow",
+  "description": "Open source online no-code database and Airtable alternative. More information about persistent files on S3, scaling and installing a custom domain can be found on https://baserow.io/docs/guides/installation/install-on-heroku. Note that it might take a couple of minutes to deploy the app, so please be patient.",
+  "repository": "https://gitlab.com/baserow/baserow",
+  "keywords": ["baserow", "no-code", "database", "airtable"],
+  "logo": "https://baserow.io/img/favicon_192.png",
+  "success_url": "/",
+  "addons": [
+    "postgresql:postgresql-sandbox",
+    "redis:redis-sandbox"
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "M"
+    }
+  },
+  "stack": "container",
+  "env": {
+    "SECRET_KEY": {
+      "description": "A unique string that is used to generate secrets.",
+      "generator": "secret"
+    },
+    "BASEROW_JWT_SIGNING_KEY": {
+      "description": "A unique string that is used to sign jwt tokens.",
+      "generator": "secret"
+    },
+    "BASEROW_PUBLIC_URL": {
+      "description": "The public URL of your Scalingo app. Don't forget to replace YOUR_APP_NAME with the name of your app and REGION with the name of the region you are deploying on.",
+      "value": "https://YOUR_APP_NAME.REGION.scalingo.io",
+      "required": true
+    },
+    "BASEROW_AMOUNT_OF_WORKERS": {
+      "description": "The amount of workers per container. This value must be `1` if you want to run the free plan.",
+      "value": "1",
+      "required": true
+    }
+  }
+}
